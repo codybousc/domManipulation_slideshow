@@ -1,0 +1,9 @@
+{
+  "name": "package",
+  "version": "0.0.0",
+  "dependencies": {
+    "requirejs": "~2.1.15",
+    "jquery": "~1.11.1",
+    "almond": "~0.3.0"
+  }
+}
