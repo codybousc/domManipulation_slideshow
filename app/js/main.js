@@ -9,6 +9,7 @@ requirejs.config({
 
 require([
     'jquery',
+    'settings',
     'slideshow',
     'TweenLite',
     'gsap/plugins/CSSPlugin.min',
@@ -17,25 +18,13 @@ require([
     
     function Main () {
         
-        var sectionSettings = [
-            {
-                id: 'loader'
-            },
-            {
-                id: 'home'
-            },
-            {
-                id: 'grid'
-            },
-            {
-                id: 'alphabet'
-            }
-        ];
         var wrapperEl = document.getElementById('wrapper');
         
-        this.sections = new slideshow(wrapperEl, sectionSettings);
+        this.sections = new slideshow(wrapperEl, siteSettings.sections);
+        this.alphabet = new slideshow(this.sections.getSlideById('alphabet').el, siteSettings.alphabet);
         
         window.onresize = resize.bind(this);
+        resize.call(this);
     }
     
     function resize(){
@@ -43,6 +32,7 @@ require([
             h = window.innerHeight;
         
         this.sections.resize(w, h);
+        this.alphabet.resize(w, h);
     }
 
     // call init on document ready
