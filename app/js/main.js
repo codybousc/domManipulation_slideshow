@@ -2,37 +2,48 @@ requirejs.config({
     paths : {   
         root: '../',
         jquery: '../bower_components/jquery/dist/jquery',
+        gsap: '../bower_components/greensock/src/minified/',
+        TweenLite: '../bower_components/greensock/src/minified/TweenLite.min'
     }
 });
 
 require([
     'jquery',
-    'classA',
-    'classB'
+    'slideshow',
+    'TweenLite',
+    'gsap/plugins/CSSPlugin.min',
+    'gsap/easing/EasePack.min'
     ], function($) {
     
     function Main () {
-        this.cA1 = new classA();
-        this.cA2 = new classA();
-        this.cB = new classB();
         
-        this.testString = 'main class';
-        // this.announceYourself = announceYourself.bind(this.cB);
+        var sectionSettings = [
+            {
+                id: 'loader'
+            },
+            {
+                id: 'home'
+            },
+            {
+                id: 'grid'
+            },
+            {
+                id: 'alphabet'
+            }
+        ];
+        var wrapperEl = document.getElementById('wrapper');
         
-        this.cA1.doTask( isDone.bind(this) );
+        this.sections = new slideshow(wrapperEl, sectionSettings);
         
+        window.onresize = resize.bind(this);
     }
     
-    function isDone(){
-        console.log(this);
-        console.log(this.testString);
+    function resize(){
+        var w = window.innerWidth,
+            h = window.innerHeight;
         
+        this.sections.resize(w, h);
     }
-    
-    
-   function announceYourself(){
-    console.log(this.testString);
-   }
 
     // call init on document ready
     $(function () {

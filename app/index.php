@@ -21,6 +21,9 @@
     <!-- build:[class]:dist prod -->
     <body class="dev">
     <!-- /build -->
+    
+        <div id="wrapper">
+        </div>
         
         <!-- build:js js/main.js -->
         <script data-main="js/main" src="bower_components/requirejs/require.js"></script>
